@@ -1,181 +1,151 @@
 ,year,cluster,cluster_name,count
-0,2019,0,"COCO DATA SET;
-E.G. PIXEL;
-OBJECT NET",108
-1,2019,1,"DEEP UNDERSTANDING;
-PROCESS;
-RESEARCHER",54
-2,2019,2,"EMERGE TECHNOLOGY;
-IMPORTANT PART;
-GROW TREND",51
-3,2019,3,"LARGE DATASET;
-DATA SET;
-CNN ARCHITECTURE",43
-4,2019,4,"FAST HARDWARE;
-OPENVINO TOOLKIT;
-BROWSER BASE INTERFACE",42
-5,2019,5,"REAL WORLD;
-WAY;
-GLANCE",29
-6,2019,6,"INDUSTRY LEADER;
-BUSINESS MODEL;
-PRODUCT",25
-7,2019,7,"PH.D. STUDENT;
-GRADUATE STUDENT;
-ELECTRICAL AND COMPUTER ENGINEERING",23
-8,2019,8,"LIQUID LENS;
-CLOSED FEEDBACK LOOP;
-LIGHT WAVE",15
-9,2019,9,"CHAD CHILE;
-CHINA COLOMBIA COMOROS CONGO;
-BAHRAIN BANGLADESH",12
-10,2020,0,"SMALL FRACTION;
-ORIGINAL AUDIO;
-BRAIN VISUAL PROCESSING SYSTEM",89
-11,2020,1,"EXAMPLE;
-SIGNIFICANT CHALLENGE;
-POWERFUL TOOL",69
-12,2020,2,"TRANSACTION;
-OWN COMPANY;
-INVESTMENT DECISION",36
-13,2020,3,"IMAGE CLASSIFICATION;
-SEMANTIC SEGMENTATION;
-CHALLENGING TASK",29
-14,2020,4,"PH.D. STUDENT;
-GRADUATE STUDENT;
-RESEARCH TEAM",25
-15,2020,5,"DATA ANNOTATION;
-LIBRARY;
-GITHUB REPOSITORY",25
-16,2020,6,"MULTIPLE CAMERA;
-MOVE OBJECT;
-VIDEO FRAME",25
-17,2020,7,"ARTIFICIAL INTELLIGENCE;
-MACHINE LEARNING;
-INDUSTRIAL AUTOMATION",18
-18,2020,8,"GENDER EXPRESSION;
-MTURK WORKER;
-SEXUAL ORIENTATION",16
-19,2020,9,"REAL WORLD;
-SCREEN;
-MOBILE DEVICE",14
-20,2021,0,"SHOPPING MALL;
-MASSIVE INTEREST;
-EARLY DETECTION",80
-21,2021,1,"SEMANTIC SEGMENTATION;
-DOMAIN ADAPTATION;
-CHALLENGING TASK",55
-22,2021,2,"IOT TOOL;
-MIT IBM WATSON AI LAB;
-MOBILE OR EMBED DEVICE",48
-23,2021,3,"EMERGE TECHNOLOGY;
-GROW NEED;
-RECENT TIME",35
-24,2021,4,"SOFTWARE ENGINEER;
-COMPANY PRODUCT;
-STARK CONTRAST",34
-25,2021,5,"HYBRID MODEL;
-COMPUTATIONAL COST;
-LOSS FUNCTION",29
-26,2021,6,"BLOG POST;
-MOBILE APP;
-APPLE SIRI",23
-27,2021,7,"DISTRIBUTION SHIFT;
-AUDIO RECORDING;
-10 CLASS",21
-28,2021,8,"CHALLENGE;
-EFFORT;
-PRIMARY FOCUS",19
-29,2021,9,"AUTONOMOUS VEHICLE;
-SAFE DRIVING;
-ROAD SIGN",6
-30,2022,0,"KEY POINT;
-SAVE TIME;
-CONSTANT",81
-31,2022,1,"SEMANTIC SEGMENTATION;
-GENERALIZATION;
-POSE ESTIMATION",36
-32,2022,2,"EMERGE TECHNOLOGY;
-INDUSTRIAL AUTOMATION;
-SMART MANUFACTURING",32
-33,2022,3,"APPLICATION;
-BASIC IDEA;
-CONTRIBUTION",31
-34,2022,4,"DEEP UNDERSTANDING;
-EMPIRICAL STUDY;
-INHERENT RISK",31
-35,2022,5,"AI AND COMPUTER VISION;
-ACTIONABLE RESEARCH;
-AGGRESSIVE PERFORMANCE GOAL",26
-36,2022,6,"GROW DEMAND;
-INDUSTRY LEADER;
-END USER",25
-37,2022,7,"ALGORITHMS WORK;
-OPEN SOURCE FRAMEWORK;
-PYTHON LIBRARY",18
-38,2022,8,"DEFOCUSE EFFECT;
-ACCURATE DISTANCE MEASUREMENT;
-SCANNING RANGE",15
-39,2022,9,"BARCODE READING;
-ASSEMBLY VERIFICATION;
-PRECISION SENSOR",14
-40,2023,0,"2D OBJECT DETECTION;
-ADAPTABLE DESIGN;
-YOLO MODEL",70
-41,2023,1,"WIN COMBINATION;
-4.2 OVERVIEW;
-JOIN FORCE",39
-42,2023,2,"GLOBAL LEADER;
-9.6 CAGR;
-PROVIDER",31
-43,2023,3,"RELEVANT INFORMATION;
-SPECIFIC NEED;
-REASON",25
-44,2023,4,"REAL WORLD;
-VR HEADSET;
-AR APPLICATION",25
-45,2023,5,"COMPUTER VISION;
-SEMANTIC SEGMENTATION;
-ANOMALY DETECTION",24
-46,2023,6,"SEAMLESS INTEGRATION;
-ADVANCED FEATURE;
-COMPUTE POWER",21
-47,2023,7,"TECHNOLOGICAL ADVANCEMENT;
-INNOVATIVE SOLUTION;
-LATE TREND",21
-48,2023,8,"AR AND VR TECHNOLOGY;
-NON TECHNICAL PEOPLE;
-GENERATIVE AI",20
-49,2023,9,"MANUAL INSPECTION;
-ITERATION;
-PREDICTIVE MAINTENANCE",14
-50,2024,0,"INEXPERIENCED USER;
-SEMANTIC ONTOLOGY;
-E.G. ONTOLOGY",53
-51,2024,1,"KERNEL WEIGHT;
-OPTOELECTRONIC SENSOR;
-ADJACENT DEVICE",43
-52,2024,2,"CLASSIFICATION TASK;
-POWERFUL ALGORITHM;
-PROPOSE APPROACH",41
-53,2024,3,"GRANT APPLICATION;
-YOUNG SCIENTIST;
-UNIQUE STRENGTH",24
-54,2024,4,"LARGE SCALE;
-FLEXIBILITY;
-INNOVATIVE FEATURE",19
-55,2024,5,"PREDICTIVE MODELING;
-DRUG DISCOVERY;
-BIOMEDICAL STUDY",18
-56,2024,6,"COMPUTER VISION;
-AI TECHNOLOGY;
-MACHINE LEARNING",15
-57,2024,7,"EXTENSIVE DISCUSSION;
-UNDERLIE PRINCIPLE;
-FOLLOW TOPIC",13
-58,2024,8,"HUMAN FACTOR;
-EARLY WARNING;
-SECURITY PERSONNEL",12
-59,2024,9,"COMPANY ACQUISITION;
-PROVIDER;
-INTEGRATED PORTFOLIO",11
+0,2020,0,"ЛИДИРУЮЩАЯ ПОЗИЦИЯ;
+МИРОВОЕ ЛИДЕРСТВО;
+ПРИВЛЕЧЕНИЕ СПЕЦИАЛИСТОВ",74
+1,2020,1,"НЕГАТИВНОЕ ВЛИЯНИЕ;
+ЭФФЕКТИВНОЕ ИСПОЛЬЗОВАНИЕ;
+ПОЛНАЯ МЕРА",65
+2,2020,2,"БЛИЖНЯЯ ПЕРСПЕКТИВА;
+ДОПОЛНИТЕЛЬНАЯ ИНВЕСТИЦИЯ;
+СТРАТЕГИЯ РАЗВИТИЯ",63
+3,2020,3,"КЛИЕНТСКАЯ БАЗА;
+ПОТРЕБНОСТЬ КЛИЕНТА;
+КАНАЛ ПРОДАЖ",60
+4,2020,4,"ЦИФРОВАЯ ТРАНСФОРМАЦИЯ;
+ПОВЫШЕНИЕ ОПЕРАЦИОННОЙ ЭФФЕКТИВНОСТИ;
+КЛИЕНТОЦЕНТРИЧНАЯ КОМПАНИЯ",59
+5,2020,5,"ПРИОРИТЕТНОЕ НАПРАВЛЕНИЕ РАБОТЫ;
+ОБЪЕДИНЕНИЕ УСИЛИЙ;
+КАДРОВАЯ ПОЛИТИКА",55
+6,2020,6,"КОРПОРАТИВНАЯ СТРУКТУРА;
+ДОЛГОВАЯ НАГРУЗКА;
+УЛУЧШЕНИЕ ФИНАНСОВЫХ ПОКАЗАТЕЛЕЙ",52
+7,2020,7,"ОСВОЕНИЕ МЕСТОРОЖДЕНИЙ;
+ЗАПАС НЕФТЯНЫХ ОТОРОЧЕК;
+ПРОГРАММА ГЕОЛОГОРАЗВЕДКИ",40
+8,2020,8,"РУКОВОДСТВО ПАО;
+ПЕРВЫЙ ЗАМЕСТИТЕЛЬ ГЕНДИРЕКТОРА;
+ГЕНЕРАЛЬНЫЙ ДИРЕКТОР",34
+9,2020,9,"ОБЕСПЕЧЕНИЕ ЭКОЛОГИЧЕСКОЙ БЕЗОПАСНОСТИ;
+ЭКОЛОГИЧЕСКИЙ ЭФФЕКТ;
+ЗАХОРОНЕНИЕ ОТХОДОВ",15
+10,2021,0,"ОПЕРАЦИОННАЯ ДЕЯТЕЛЬНОСТЬ;
+30 ЛЕТНЯЯ ИСТОРИЯ КОМПАНИИ;
+ДОЛГОВАЯ НАГРУЗКА",88
+11,2021,1,"НАПРАВЛЕНИЕ ДЕЯТЕЛЬНОСТИ;
+СТРАТЕГИЯ РАЗВИТИЯ;
+КРУПНАЯ КОМПАНИЯ",73
+12,2021,2,"ПРОЦЕСС ПРОИЗВОДСТВА;
+КАПИТАЛЬНАЯ ЗАТРАТА;
+СПЕЦИАЛИЗИРОВАННОЕ ОБОРУДОВАНИЕ",70
+13,2021,3,"КЛИЕНТСКИЙ СЕРВИС;
+ВИРТУАЛИЗАЦИЯ ИНФРАСТРУКТУРЫ;
+КЛИЕНТСКАЯ БАЗА",63
+14,2021,4,"ПЕРВОЕ ПОЛУГОДИЕ;
+ПРИОРИТЕТНАЯ ЗАДАЧА;
+НАРАЩИВАНИЕ ПОРТОВЫХ МОЩНОСТЕЙ",49
+15,2021,5,"ПАРТНЕРСКАЯ АПТЕКА;
+СБЕР ЕАПТЕКА;
+МЕДИЦИНСКИЙ ТОВАР",42
+16,2021,6,"ГЕОЛОГОРАЗВЕДОЧНАЯ РАБОТА;
+ДОБЫЧА УГЛЕВОДОРОДНОГО СЫРЬЯ;
+ИТОГ ГЕОЛОГОРАЗВЕДОЧНЫХ РАБОТ",38
+17,2021,7,"КАТАЛИЗАТОР СОБСТВЕННОГО ПРОИЗВОДСТВА;
+СНИЖЕНИЕ УГЛЕРОДНОГО СЛЕДА;
+ВНЕШНИЙ РЫНОК",34
+18,2021,8,"ПОСТОЯННАЯ ОСНОВА;
+ДАННЫЙ МОМЕНТ;
+МОБИЛЬНОЕ УСТРОЙСТВО",29
+19,2021,9,"НЕФТЕПЕРЕРАБАТЫВАЮЩИЙ ЗАВОД;
+ВАКУУМНЫЙ ГАЗОЙЛЬ;
+УСТАНОВКА КАТАЛИТИЧЕСКОГО РИФОРМИНГА",11
+20,2022,0,"КЛЮЧЕВОЕ НАПРАВЛЕНИЕ;
+ЛУЧШАЯ ПРАКТИКА;
+ЛУЧШИЙ ПРАКТИК",78
+21,2022,1,"2022 ГОД;
+ФИНАНСОВАЯ ВОЗМОЖНОСТЬ;
+БОЛЬШЕЕ ПОДСПОРЬЕ",76
+22,2022,2,"НЕГАТИВНОЕ ВЛИЯНИЕ;
+БОЛЬШОЕ КОЛИЧЕСТВО;
+ОПТИМАЛЬНЫЙ ВАРИАНТ",69
+23,2022,3,"АРХИТЕКТУРА БРОВЕЙ;
+СКОРОСТЬ РАЗВИТИЯ;
+ПРОИЗВОДСТВО ГОФРОКАРТОНА",65
+24,2022,4,"КЛИЕНТСКАЯ БАЗА;
+ЗАПУСК НОВЫХ ПРОДУКТОВ;
+ШИРОКИЙ СПЕКТР УСЛУГ",57
+25,2022,5,"КОРПОРАТИВНАЯ КУЛЬТУРА;
+ПОДБОР ПЕРСОНАЛА;
+БУДУЩИЙ СОТРУДНИК",48
+26,2022,6,"ПРИХОД ИНОСТРАННЫХ ИНВЕСТОРОВ;
+НЕФТЕГАЗОВЫЙ СЕКТОР;
+ФОНДОВЫЙ РЫНОК",42
+27,2022,7,"ГЕОЛОГОРАЗВЕДОЧНАЯ РАБОТА;
+РУДНИК ЗАПОЛЯРНОГО ФИЛИАЛА;
+ДОБЫЧА УГЛЕВОДОРОДНОГО СЫРЬЯ",37
+28,2022,8,"ОЦЕНКА АКТИВОВ;
+ПРОДАЖА АКЦИЙ;
+АКЦИЯ ЗАВОДА",21
+29,2022,9,"ВЫДАЧА КРЕДИТОВ;
+СНИЖЕНИЕ ПРОЦЕНТНЫХ СТАВОК;
+ОТКРЫТИЕ ДЕПОЗИТНЫХ СЧЕТОВ",19
+30,2023,0,"АМБИЦИОЗНАЯ ЦЕЛЬ;
+НАДЁЖНАЯ РУКА;
+БОЛЬШАЯ ДЕНЬГА",62
+31,2023,1,"МАРКЕТИНГОВАЯ СТРАТЕГИЯ;
+КЛИЕНТСКАЯ БАЗА;
+ЗАПУСК НОВЫХ ПРОДУКТОВ",61
+32,2023,2,"ДОЛГОВАЯ НАГРУЗКА;
+БОЛЬШАЯ ЧАСТЬ ПРИБЫЛИ;
+БАНКОВСКИЙ СЕКТОР",59
+33,2023,3,"СЕРВИСНОЕ ОБСЛУЖИВАНИЕ;
+СТАДИЯ ПРОЕКТИРОВАНИЯ;
+ЕДИНАЯ СИСТЕМА",56
+34,2023,4,"СЛОЖНАЯ ЗАДАЧА;
+ПОЛНАЯ МЕРА;
+НОВЫЙ ВОЗМОЖНОСТЬ",55
+35,2023,5,"ДОПОЛНИТЕЛЬНЫЙ ДИПЛОМ;
+БАЗОВОЕ ЗНАНИЕ;
+ПЕРЕКВАЛИФИКАЦИЯ СПЕЦИАЛИСТОВ",48
+36,2023,6,"РАМКА КОНФЕРЕНЦИИ;
+ЦИФРОВАЯ ТРАНСФОРМАЦИЯ;
+СТРАТЕГИЧЕСКАЯ СЕССИЯ",41
+37,2023,7,"РАБОТА ПРЕДПРИЯТИЯ;
+ТРЕТИЙ КВАРТАЛ;
+ПЕРВОЕ ПОЛУГОДИЕ",34
+38,2023,8,"ЭФФЕКТИВНЫЙ КАНАЛ ПРИВЛЕЧЕНИЯ;
+СТАТУС ОПЛАТЫ;
+КАРТОЧКА СДЕЛКИ",31
+39,2023,9,"ТЕКУЩИЙ МОМЕНТ;
+ДАННЫЙ МОМЕНТ;
+СЛЕДУЮЩИЙ ШАГ",16
+40,2024,0,"МАРКЕТИНГОВАЯ СТРАТЕГИЯ;
+ЭФФЕКТИВНАЯ КОММУНИКАЦИЯ;
+ЗАПУСК НОВЫХ ПРОДУКТОВ",86
+41,2024,1,"МНОЖЕСТВО ПРОБЛЕМ;
+ВАЖНЫЙ ВОПРОС;
+ВОЗМОЖНАЯ ПРОБЛЕМА",82
+42,2024,2,"НАРАБОТКА РЕПУТАЦИИ;
+ОСТАЛЬНОЙ СОТРУДНИК;
+СОТНЯ УЧАСТНИКОВ",63
+43,2024,3,"ВЫХОД КОМПАНИИ;
+ДИВЕРСИФИКАЦИЯ ВЫРУЧКИ;
+КРИЗИСНОЕ ВРЕМЯ",63
+44,2024,4,"ЛУЧШАЯ ПРАКТИКА;
+ИНВЕСТИЦИОННАЯ ПРИВЛЕКАТЕЛЬНОСТЬ;
+КЛЮЧЕВОЕ НАПРАВЛЕНИЕ",62
+45,2024,5,"ИТОГ СТРАТЕГИЧЕСКОЙ СЕССИИ;
+ВЫЗОВ ВРЕМЕНИ;
+ИТОГ МЕРОПРИЯТИЯ",40
+46,2024,6,"МАКСИМУМ УСИЛИЙ;
+МАСШТАБНАЯ РАБОТА;
+ВНУТРИПАРКОВАЯ ДОРОГА",39
+47,2024,7,"ПОПУЛЯРНАЯ МОДЕЛЬ;
+МОЩНЫЙ ПРОЦЕССОР;
+МНОЖЕСТВО ПРОИЗВОДИТЕЛЕЙ",17
+48,2024,8,"ПОЗИТИВНАЯ НОВОСТЬ;
+ГОЛУБАЯ ФИШКА;
+БУМАГА ФИНАНСОВОГО СЕКТОРА",15
+49,2024,9,"ЗАПАС УГЛЕВОДОРОДОВ;
+ГЕОЛОГОРАЗВЕДОЧНАЯ РАБОТА;
+ОБЪЁМ ЭКСПЛУАТАЦИОННОГО БУРЕНИЯ",13
