@@ -1,10 +1,10 @@
-import pandas as pd
-import svgwrite
-
-import cairosvg
-import svgwrite
 import base64
+import svgwrite
+import cairosvg
+import pandas as pd
+
 from collections import defaultdict
+
 
 colors_dict = {
     0: '#800000',
@@ -30,9 +30,109 @@ colors_dict = {
 }
 
 
-class SankeyMap():
+class SankeyMap:
+    """
+    Класс для создания Санки-диаграмм.
+
+    Атрибуты:
+    ----------
+    area : str
+        Название области, где будет отображаться диаграмма.
+    df : pandas.DataFrame
+        Данные для визуализации, содержащие столбцы с годами, терминами, кластерами и их именами.
+    width : int
+        Ширина диаграммы (по умолчанию 1400).
+    height : int
+        Высота диаграммы (по умолчанию 850).
+    padding_y : int
+        Вертикальные отступы (по умолчанию 50).
+    padding_top : int
+        Отступ сверху (по умолчанию 10).
+    padding_bottom : int
+        Отступ снизу (по умолчанию -120).
+    padding_x_right : int
+        Отступ справа (по умолчанию 50).
+    padding_x_left : int
+        Отступ слева (по умолчанию 50).
+    node_width : int
+        Фиксированная ширина узлов (по умолчанию 20).
+    min_node_height : int
+        Минимальная высота узла (по умолчанию 30).
+    fixed_padding_between_clusters : int
+        Вертикальный отступ между узлами (по умолчанию 5).
+    min_flow_width : int
+        Минимальная толщина линии потока (по умолчанию 2).
+    max_flow_width : int
+        Максимальная толщина линии потока (по умолчанию 15).
+    opacity_flow : float
+        Прозрачность линии потока (по умолчанию 0.3).
+
+    Методы:
+    -------
+    prepare_visualization_params():
+        Подготавливает параметры визуализации, включая фильтрацию столбцов,
+        подсчет кластеров, обновление кластеров, генерацию уникальных имен кластеров и
+        инициализацию метрик для визуализации.
+
+    _filter_columns():
+        Фильтрует DataFrame, оставляя только необходимые столбцы.
+
+    _compute_cluster_counts():
+        Вычисляет количество терминов по годам и кластерам.
+
+    _update_clusters(cluster_counts):
+        Обновляет DataFrame с новыми значениями кластеров.
+
+    _generate_unique_cluster_names():
+        Генерирует уникальные имена кластеров на основе года и номера кластера.
+
+    _initialize_visualization_metrics():
+        Инициализирует метрики и диапазоны для визуализации.
+
+    _calculate_distances():
+        Рассчитывает расстояния между узлами и колонками.
+
+    add_flow(source, target, value, color_start, color_end):
+        Добавляет поток между узлами, создавая визуализацию кривой Безье.
+
+    draw_flows():
+        Рисует потоки между узлами на основе данных.
+
+    draw_nodes():
+        Рисует узлы диаграммы, добавляя их визуальные представления.
+
+    normalize_width_flow(couples, x, y):
+        Нормализует ширину потоков для визуализации.
+
+    create_couples():
+        Создает пары узлов для визуализации потоков на основе данных.
+
+    create_flows():
+        Создает данные потоков, основываясь на последовательных годах и терминах.
+
+    add_node(name, x, y0, y1, color):
+        Добавляет узел к диаграмме с указанными параметрами.
+
+    create_nodes_positions():
+        Создает позиции узлов на диаграмме.
+
+    draw_years():
+        Рисует текстовые метки для каждого года на диаграмме.
+
+    draw_logos():
+        Рисует логотипы и текстовые источники данных на диаграмме.
+
+    draw_sankey_map():
+        Создает и сохраняет диаграмму Санки в формате SVG и PNG.
+
+    Примечание:
+    ----------
+    Данный класс предназначен для визуализации взаимосвязей и потоков между кластерами терминов за различные годы,
+    позволяя визуализировать изменения и связи в данных с помощью диаграмм Санки.
+    """
 
     def __init__(self, df, area):
+        self.years_text = None
         self.area = area
         self.df = df
         self.width = 1400
@@ -52,99 +152,143 @@ class SankeyMap():
         self.opacity_flow = 0.3  # Прозрачность перетока
 
     def prepare_visualization_params(self):
+        # Оставляем только необходимые столбцы
+        self._filter_columns()
 
-        self.df = self.df[['year', 'term', 'cluster', "cluster_name"]]
+        # Считаем количество терминов по годам и кластерам
+        cluster_counts = self._compute_cluster_counts()
 
+        # Обновляем DataFrame с новыми значениями кластеров
+        self._update_clusters(cluster_counts)
+
+        # Генерируем уникальные имена кластеров
+        self._generate_unique_cluster_names()
+
+        # Инициализируем метрики и диапазоны для визуализации
+        self._initialize_visualization_metrics()
+
+        # Рассчитываем расстояния между узлами и колонками
+        self._calculate_distances()
+
+    def _filter_columns(self):
+        self.df = self.df[['year', 'term', 'cluster', 'cluster_name']]
+
+    def _compute_cluster_counts(self):
         cluster_counts = self.df.groupby(['year', 'cluster']).size().reset_index(name='term_count')
-
         cluster_counts = cluster_counts.sort_values(['year', 'term_count'], ascending=[True, False])
-
         cluster_counts['new_cluster'] = cluster_counts.groupby('year').cumcount()
+        return cluster_counts
 
+    def _update_clusters(self, cluster_counts):
         self.df = self.df.merge(cluster_counts[['year', 'cluster', 'new_cluster']], on=['year', 'cluster'], how='left')
-
-        self.df = self.df.drop(columns=['cluster'])
-
+        self.df.drop(columns=['cluster'], inplace=True)
         self.df.rename(columns={'new_cluster': 'cluster'}, inplace=True)
 
+    def _generate_unique_cluster_names(self):
         self.df['unique_cluster_name'] = self.df.apply(lambda row: f"{row['year']} {row['cluster']}", axis=1)
 
-        self.min_year = min(self.df["year"])
-        self.max_year = max(self.df["year"])
-
-        self.min_cluster = min(self.df["cluster"])
-        self.max_cluster = max(self.df["cluster"])
+    def _initialize_visualization_metrics(self):
+        self.min_year = self.df['year'].min()
+        self.max_year = self.df['year'].max()
+        self.min_cluster = self.df['cluster'].min()
+        self.max_cluster = self.df['cluster'].max()
 
         self.years = list(range(self.min_year, self.max_year + 1))
         self.clusters = list(range(self.min_cluster, self.max_cluster + 1))
 
         self.term_counts = self.df.groupby(['year', 'cluster', 'cluster_name']).size().reset_index(name='count')
-
-        self.count_unique_cluster = len(self.term_counts["cluster"].unique())
-
+        self.count_unique_cluster = self.term_counts['cluster'].nunique()
         self.total_term_counts = self.term_counts.groupby('year')['count'].sum().to_dict()
 
-        self.horizontal_distance_between_nodes = ((self.width + self.padding_x_right) - self.node_width * (
-            len(self.years))) / (len(self.years))
-
+    def _calculate_distances(self):
+        self.horizontal_distance_between_nodes = ((self.width + self.padding_x_right) -
+                                                  self.node_width * len(self.years)) / len(self.years)
         self.available_height = (self.height - self.padding_top + self.padding_bottom -
                                  self.count_unique_cluster * self.fixed_padding_between_clusters)
-
         self.horizontal_distance_between_columns = self.horizontal_distance_between_nodes - 2 * self.node_width
 
     def add_flow(self, source, target, value, color_start, color_end):
+        # Получение координат узлов источника и цели
         x0, y0, node_height0 = self.node_positions[source][1]
         x1, y1, node_height1 = self.node_positions[target][1]
 
+        # Вычисление центров по вертикали для источника и цели
         source_center_y = y0 + (node_height0 - y0) / 2
         target_center_y = y1 + (node_height1 - y1) / 2
 
+        # Определение контрольных точек для кривой Безье
         control_x = (x0 + x1) / 2
-        control_y0 = source_center_y
-        control_y1 = target_center_y
 
+        # Создание идентификатора для градиента
         source_id = source.replace(' ', '_')
         target_id = target.replace(' ', '_')
+        gradient_id = f'{source_id}_{target_id}_{value}'
 
-        id = f'{source_id}_{target_id}_{value}'
-
-        gradient = self.dwg.defs.add(self.dwg.linearGradient(id=id, start=('0%', '0%'), end=('100%', '0%')))
-
+        # Добавление линейного градиента в defs
+        gradient = self.dwg.defs.add(
+            self.dwg.linearGradient(id=gradient_id, start=('0%', '0%'), end=('100%', '0%'))
+        )
         gradient.add_stop_color(0, color_start, opacity=0.3)
         gradient.add_stop_color(1, color_end, opacity=0.3)
 
-        self.dwg.add(self.dwg.path(
-            d=f'M {x0 + self.node_width}, {control_y0} C {control_x},'
-              f' {control_y0} {control_x}, {control_y1} {x1}, {control_y1}',
-            stroke=f'url(#{id})',
-            stroke_width=value, fill='none'
-        ))
+        # Добавление пути для визуализации потока
+        self.dwg.add(
+            self.dwg.path(
+                d=f'M {x0 + self.node_width}, {source_center_y} C {control_x}, {source_center_y} '
+                  f'{control_x}, {target_center_y} {x1}, {target_center_y}',
+                stroke=f'url(#{gradient_id})',
+                stroke_width=value,
+                fill='none'
+            )
+        )
 
     def draw_flows(self):
-        for key, value in self.couples.items():
-            source = key[0][0]
-            target = key[1][0]
+        for (source_tuple, target_tuple), value in self.couples.items():
+            source = source_tuple[0]
+            target = target_tuple[0]
 
-            cluster_source = self.df[self.df["unique_cluster_name"] == source]['cluster'].iloc[0]
-            cluster_target = self.df[self.df["unique_cluster_name"] == target]['cluster'].iloc[0]
+            try:
+                cluster_source = self.df.loc[self.df["unique_cluster_name"] == source, 'cluster'].iloc[0]
+                cluster_target = self.df.loc[self.df["unique_cluster_name"] == target, 'cluster'].iloc[0]
+            except IndexError:
+                # Логирование ошибки или пропуск итерации при отсутствии данных
+                print(f"Warning: Cluster data not found for source '{source}' or target '{target}'.")
+                continue
 
-            color_start = colors_dict[cluster_source]
-            color_end = colors_dict[cluster_target]
+            color_start = colors_dict.get(cluster_source, '#000000')  # Использование черного по умолчанию
+            color_end = colors_dict.get(cluster_target, '#000000')  # Использование черного по умолчанию
 
             self.add_flow(source, target, value, color_start, color_end)
 
     def draw_nodes(self):
         for node, values in self.node_positions.items():
-            node = node.split(' ')
-            cluster_number = int(node[1])
+            try:
+                # Извлечение номера кластера из имени узла
+                node_parts = node.split(' ')
+                cluster_number = int(node_parts[1])
+            except (IndexError, ValueError) as e:
+                # Логирование ошибки и пропуск итерации при неверном формате узла
+                print(f"Не удалось извлечь номер кластера из узла '{node}': {e}")
+                continue
+
             cluster_name = values[0]
-            cluster_color = colors_dict.get(cluster_number)
+            cluster_color = colors_dict.get(cluster_number, '#000000')  # Цвет по умолчанию, если не найден
             (x, y0, y1) = values[1]
+
+            # Добавление узла с проверкой всех значений
             self.add_node(cluster_name, x, y0, y1, cluster_color)
 
     def normalize_width_flow(self, couples, x, y):
+        if not couples:
+            print("Предупреждение: Пустой словарь 'couples'. Возвращается пустой результат.")
+            return {}
+
         min_value = min(couples.values())
         max_value = max(couples.values())
+
+        if min_value == max_value:
+            print("Все значения в 'couples' одинаковы. Нормализация невозможна, возвращаются одинаковые значения.")
+            return {key: x for key in couples.keys()}
 
         normalized_couples = {
             key: x + ((value - min_value) * (y - x)) / (max_value - min_value)
@@ -159,35 +303,64 @@ class SankeyMap():
         for year in self.years[:-1]:
             df_cur_year = self.df[self.df["year"] == year]
             df_next_year = self.df[self.df["year"] == year + 1]
+
             for term in df_cur_year['term'].unique():
                 term_unique_cluster_cur = df_cur_year[df_cur_year["term"] == term]["unique_cluster_name"].values
                 term_unique_cluster_next = df_next_year[df_next_year["term"] == term]["unique_cluster_name"].values
 
-                if term_unique_cluster_next.size > 0:
+                # Проверка на наличие кластеров в обоих годах
+                if term_unique_cluster_cur.size > 0 and term_unique_cluster_next.size > 0:
                     couples.append([term_unique_cluster_cur, term_unique_cluster_next])
+
+        if not couples:
+            print("Не найдено пар для создания связей.")
+            self.couples = {}
+            return
 
         count_dict = defaultdict(int)
 
         for sublist in couples:
+            # Преобразование значений для использования в качестве ключей
             tuple_key = tuple(tuple(item) for item in sublist)
             count_dict[tuple_key] += 1
 
-        couples = dict(count_dict)
+        # Преобразование словаря для нормализации
+        couples_dict = dict(count_dict)
 
-        self.couples = self.normalize_width_flow(couples, self.min_flow_width, self.max_flow_width)
+        # Нормализация ширины потока
+        self.couples = self.normalize_width_flow(couples_dict, self.min_flow_width, self.max_flow_width)
 
     def create_flows(self):
         flow_data = []
+
         for term in self.df['term'].unique():
             term_data = self.df[self.df['term'] == term].sort_values('year')
+
+            if term_data.empty:
+                print(f" Нет данных для термина '{term}'. Пропуск.")
+                continue
+
             for i in range(len(term_data) - 1):
                 current_year = term_data.iloc[i]['year']
                 next_year = term_data.iloc[i + 1]['year']
 
-                if next_year - current_year == 1:  # переток только на следующий год
-                    source_node = f"{term_data.iloc[i]['cluster_name']}"
-                    target_node = f"{term_data.iloc[i + 1]['cluster_name']}"
+                # Проверка, что данные относятся к последовательным годам
+                if next_year - current_year == 1:
+                    source_node = term_data.iloc[i]['cluster_name']
+                    target_node = term_data.iloc[i + 1]['cluster_name']
+
+                    # Проверка на пустые узлы
+                    if not source_node or not target_node:
+                        print(
+                            f"Пустые значения узлов для термина '{term}' между {current_year} и {next_year}. Пропуск.")
+                        continue
+
                     flow_data.append((source_node, target_node))
+
+        if not flow_data:
+            print("Потоки не были созданы. Возможно, отсутствуют переходы между последовательными годами.")
+
+        self.flow_data = flow_data
 
     def add_node(self, name, x, y0, y1, color):
         height = y1 - y0  # Высота столбика
@@ -247,8 +420,8 @@ class SankeyMap():
                                        text_anchor="start"))
 
     def create_nodes_positions(self):
-        node_positions = {}
-        years_text = {}
+        self.node_positions = {}
+        self.years_text = {}
         for year in self.years:
             x_year_start = self.padding_x_left + (year - self.min_year) * self.horizontal_distance_between_nodes
             x = x_year_start
@@ -287,16 +460,14 @@ class SankeyMap():
                 node_height = cluster_proportion_dict.get(cluster, self.min_node_height)
                 y1 = y0 + node_height
 
-                node_positions[f'{year} {cluster}'] = [cluster_name, (x, y0, y1)]
+                self.node_positions[f'{year} {cluster}'] = [cluster_name, (x, y0, y1)]
 
                 y0 = y1 + self.fixed_padding_between_clusters
 
-            years_text[year] = [x_year_start, y1]
+            self.years_text[year] = [x_year_start, y1]
 
-        return node_positions, years_text
-
-    def draw_years(self, years_text):
-        for key, values in years_text.items():
+    def draw_years(self, ):
+        for key, values in self.years_text.items():
             self.dwg.add(
                 self.dwg.text(key, insert=(values[0] - 15, values[1] + 35), fill='black', font_size='24px',
                               font_family='Arial'))
@@ -311,10 +482,10 @@ class SankeyMap():
         text = "Источник: Система интеллектуального анализа больших данных iFORA (правообладатель — ИСИЭЗ НИУ ВШЭ)"
 
         self.dwg.add(self.dwg.text(text, insert=(423, 845),
-                                   fill='gray',  # Цвет шрифта
+                                   fill='gray',
                                    font_size='18px',
                                    font_family='Arial',
-                                   font_style='italic',  # Наклон
+                                   font_style='italic',
                                    text_anchor="start"))
 
     def draw_sankey_map(self):
@@ -328,9 +499,9 @@ class SankeyMap():
 
         self.prepare_visualization_params()
 
-        self.node_positions, years_text = self.create_nodes_positions()
+        self.create_nodes_positions()
 
-        self.draw_years(years_text)
+        self.draw_years()
 
         self.create_flows()
 
